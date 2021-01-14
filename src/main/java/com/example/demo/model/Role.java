@@ -16,11 +16,13 @@ import javax.persistence.*;
 @Table(name = "Role")
 public class Role {
 
-    public Role(RoleType roleType) {type = roleType;}
+    public Role(RoleType roleType) {
+        type = roleType;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column
+    @Column(name = "roleId")
     private Long id;
 
     @Column
