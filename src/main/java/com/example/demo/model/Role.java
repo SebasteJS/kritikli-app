@@ -22,10 +22,10 @@ public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "roleId")
+    @Column(name = "role_id")
     private Long id;
 
-    @Column
+    @Column(name = "role_type")
     @Enumerated(EnumType.STRING)
     private RoleType type;
 

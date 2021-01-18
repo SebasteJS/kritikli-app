@@ -18,7 +18,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "userId")
+    @Column(name = "user_id")
     private Long id;
 
     @Column
@@ -27,14 +27,14 @@ public class User {
     @Column
     private String lastName;
 
-    @Column(unique = true)
+    @Column(name = "login", unique = true)
     private String login;
 
-    @Column
+    @Column(name = "password")
     private String password;
 
     @ManyToMany
-    @JoinTable(name = "userRole", joinColumns = {@JoinColumn(name = "userId")}, inverseJoinColumns = {@JoinColumn(name = "roleId")})
+    @JoinTable(name = "user_role", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private List<Role> roles;
 
 

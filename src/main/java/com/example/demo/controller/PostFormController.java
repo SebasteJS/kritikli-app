@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/main/chosen-category/add-post")
+@RequestMapping("/main/add-post")
 @RequiredArgsConstructor
 public class PostFormController {
 
