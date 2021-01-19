@@ -1,12 +1,15 @@
 package com.example.demo.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
-@RestController
-@RequestMapping("/main")
+@Controller
 @RequiredArgsConstructor
 public class MainController {
 
+    @GetMapping({"/", "/main"})
+    public String mainPage() {
+        return "main-page";
+    }
 }
