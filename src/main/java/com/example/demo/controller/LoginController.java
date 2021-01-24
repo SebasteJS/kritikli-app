@@ -1,12 +1,16 @@
 package com.example.demo.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/main/login")
 @RequiredArgsConstructor
 public class LoginController {
+
+    @GetMapping("/main/login")
+    public String loginPage() {
+        return "login";
+    }
 
 }

@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-public class RegistrationController {
+public class AddPostController {
 
-    @GetMapping("/main/registration")
-    public String registrationPage() {
-        return "registration";
+    @GetMapping("/main/add-post")
+    public String addPostPage() {
+        return "add-post";
     }
 
 }

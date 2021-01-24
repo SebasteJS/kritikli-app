@@ -1,12 +1,16 @@
 package com.example.demo.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/main/movie")
 @RequiredArgsConstructor
 public class MovieController {
+
+    @GetMapping("/main/movie")
+    public String moviePage() {
+        return "movie-category";
+    }
 
 }
