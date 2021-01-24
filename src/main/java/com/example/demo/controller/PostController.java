@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-public class AddPostController {
+public class PostController {
 
     @GetMapping("/main/add-post")
     public String addPostPage() {
