@@ -1,12 +1,9 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.MusicDto;
 import com.example.demo.dto.UserDto;
-import com.example.demo.model.Music;
 import com.example.demo.model.Role;
 import com.example.demo.model.User;
 import com.example.demo.model.type.RoleType;
-import com.example.demo.repository.MusicRepository;
 import com.example.demo.repository.RoleRepository;
 import com.example.demo.repository.UserRepository;
 import lombok.RequiredArgsConstructor;

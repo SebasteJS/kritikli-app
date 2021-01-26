@@ -5,12 +5,12 @@
     <title>Sculpture</title>
 </head>
 <body>
-    <div th:replace="header.html"></div>
-    <div th:include="navbar.html"></div>
+    <div th:replace="/fragments/header.html"></div>
+    <div th:include="/fragments/navbar.html"></div>
     category
-    <div th:include="add-post.html"></div>
-    <div th:include="edit-post.html"></div>
+    <div th:include="/fragments/add-post.html"></div>
+    <div th:include="/fragments/edit-post.html"></div>
     posts
-    <div th:include="footer.html"></div>
+    <div th:include="/fragments/footer.html"></div>
 </body>
 </html>

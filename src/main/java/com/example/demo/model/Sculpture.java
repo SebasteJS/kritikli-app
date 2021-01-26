@@ -17,7 +17,7 @@ public class Sculpture {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column
+    @Column(name = "sculpture_id")
     private Long id;
 
     @Column

@@ -1,11 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.MusicDto;
-import com.example.demo.dto.SculptureDto;
-import com.example.demo.dto.UserDto;
 import com.example.demo.model.Music;
-import com.example.demo.model.Sculpture;
-import com.example.demo.model.User;
 import com.example.demo.repository.MusicRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
