@@ -23,7 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/main/add-post").access("hasRole('ROLE_CLIENT')")
                 .antMatchers("/main").permitAll()
                 .antMatchers("/main/user-profile").access("hasRole('ROLE_CLIENT')")
-                .antMatchers("/login*").permitAll()
+                .antMatchers("/main/login*").permitAll()
                 .antMatchers("/regist*").permitAll()
                 .antMatchers("/header").permitAll()
                 .antMatchers("footer").permitAll()
