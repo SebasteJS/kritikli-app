@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequiredArgsConstructor
 public class OtherController {
 
-    private OtherService otherService;
+    private final OtherService otherService;
 
     @GetMapping("/main/other")
     public String otherPage(Model model) {

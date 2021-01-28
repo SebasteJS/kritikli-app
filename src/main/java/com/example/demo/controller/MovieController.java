@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequiredArgsConstructor
 public class MovieController {
 
-    private MovieService movieService;
+    private final MovieService movieService;
 
     @GetMapping("/main/movie")
     public String moviePage(Model model) {

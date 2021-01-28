@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequiredArgsConstructor
 public class ImageController {
 
-    private ImageService imageService;
+    private final ImageService imageService;
 
     @GetMapping("/main/image")
     public String imagePage(Model model) {

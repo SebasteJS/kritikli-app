@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequiredArgsConstructor
 public class FashionController {
 
-    private FashionService fashionService;
+    private final FashionService fashionService;
 
     @GetMapping("/main/fashion")
     public String fashionPage(Model model) {

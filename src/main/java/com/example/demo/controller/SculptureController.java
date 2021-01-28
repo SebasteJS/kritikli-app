@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequiredArgsConstructor
 public class SculptureController {
 
-    private SculptureService sculptureService;
+    private final SculptureService sculptureService;
 
     @GetMapping("/main/sculpture")
     public String sculpturePage(Model model) {

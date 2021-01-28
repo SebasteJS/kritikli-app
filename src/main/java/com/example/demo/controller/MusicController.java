@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequiredArgsConstructor
 public class MusicController {
 
-    private MusicService musicService;
+    private final MusicService musicService;
 
     @GetMapping("/main/music")
     public String musicPage(Model model) {

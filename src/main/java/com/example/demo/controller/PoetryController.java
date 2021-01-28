@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequiredArgsConstructor
 public class PoetryController {
 
-    private PoetryService poetryService;
+    private final PoetryService poetryService;
 
     @GetMapping("/main/poetry")
     public String poetryPage(Model model) {

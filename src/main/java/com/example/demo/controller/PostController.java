@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class PostController {
 
-    @GetMapping("/main/add-post")
+    @GetMapping("/main/currentCategory/add-post")
     public String addPostPage() {
-        return "add-post";
+        return "/fragments/add-post";
     }
     //wysyłanie posta do serwisu a potem do bazy danych
 }
