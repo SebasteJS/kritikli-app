@@ -25,7 +25,7 @@ public class FashionService {
         return fashionRepository.save(addedFashion).getId();
     }
 
-    public List<FashionDto> findAll() {
+    public List<FashionDto> list() {
         List<FashionDto> fashionDtoList = new ArrayList<>();
         Iterable<Fashion> fashions = fashionRepository.findAll();
         for (Fashion fashionFind : fashions) {

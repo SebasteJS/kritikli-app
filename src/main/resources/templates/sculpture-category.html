@@ -11,6 +11,12 @@
     <div th:include="/fragments/add-post.html"></div>
     <div th:include="/fragments/edit-post.html"></div>
     posts
+    <div th:each="sculpture : ${sculptures}">
+        <p th:text="${sculpture.author}"></p>
+        <p th:text="${sculpture.title}"></p>
+        <p th:text="${sculpture.description}"></p>
+        <p th:text="${sculpture.criticalDescription}"></p>
+    </div>
     <div th:include="/fragments/footer.html"></div>
 </body>
 </html>

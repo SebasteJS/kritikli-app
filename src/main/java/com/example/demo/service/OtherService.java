@@ -1,10 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.BookDto;
 import com.example.demo.dto.OtherDto;
-import com.example.demo.model.Book;
 import com.example.demo.model.Other;
-import com.example.demo.repository.BookRepository;
 import com.example.demo.repository.OtherRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,7 +25,7 @@ public class OtherService {
         return otherRepository.save(addedOther).getId();
     }
 
-    public List<OtherDto> findAll() {
+    public List<OtherDto> list() {
         List<OtherDto> otherDtoList = new ArrayList<>();
         Iterable<Other> others = otherRepository.findAll();
         for (Other otherFind : others) {

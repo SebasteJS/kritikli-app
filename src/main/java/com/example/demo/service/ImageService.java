@@ -25,7 +25,7 @@ public class ImageService {
         return imageRepository.save(addedImage).getId();
     }
 
-    public List<ImageDto> findAll() {
+    public List<ImageDto> list() {
         List<ImageDto> imageDtoList = new ArrayList<>();
         Iterable<Image> images = imageRepository.findAll();
         for (Image imageFind : images) {

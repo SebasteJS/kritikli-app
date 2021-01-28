@@ -25,7 +25,7 @@ public class BookService {
         return bookRepository.save(addedBook).getId();
     }
 
-    public List<BookDto> findAll() {
+    public List<BookDto> list() {
         List<BookDto> bookDtoList = new ArrayList<>();
         Iterable<Book> books = bookRepository.findAll();
         for (Book bookFind : books) {
@@ -39,6 +39,7 @@ public class BookService {
         }
         return bookDtoList;
     }
+
 
     public void update(BookDto bookDto) {
         Optional<Book> editedBook = bookRepository.findById(bookDto.getId());

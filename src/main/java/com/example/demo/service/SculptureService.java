@@ -25,7 +25,7 @@ public class SculptureService {
         return sculptureRepository.save(addedSculpture).getId();
     }
 
-    public List<SculptureDto> findAll() {
+    public List<SculptureDto> list() {
         List<SculptureDto> sculptureDtoList = new ArrayList<>();
         Iterable<Sculpture> musics = sculptureRepository.findAll();
         for (Sculpture musicFind : musics) {

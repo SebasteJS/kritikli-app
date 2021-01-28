@@ -1,18 +1,28 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.SculptureDto;
+import com.example.demo.service.SculptureService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 @RequiredArgsConstructor
 public class SculptureController {
 
+    private SculptureService sculptureService;
+
     @GetMapping("/main/sculpture")
-    public String sculpturePage() {
+    public String sculpturePage(Model model) {
+        getAllSculptures(model);
+        model.addAttribute("sculpture", SculptureDto.builder().build());
+        model.addAttribute("message", "My message to working controller");
         return "sculpture-category";
     }
 
-    //  wyświetlanie wszystkich elementów kategorii
+    private void getAllSculptures(Model model) {
+        model.addAttribute("sculptures",sculptureService.list());
+    }
+
 }

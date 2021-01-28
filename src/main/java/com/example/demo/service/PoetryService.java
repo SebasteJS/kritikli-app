@@ -25,7 +25,7 @@ public class PoetryService {
         return poetryRepository.save(addedPoetry).getId();
     }
 
-    public List<PoetryDto> findAll() {
+    public List<PoetryDto> list() {
         List<PoetryDto> poetryDtoList = new ArrayList<>();
         Iterable<Poetry> poetries = poetryRepository.findAll();
         for (Poetry poetryFind : poetries) {

@@ -1,25 +1,28 @@
 package com.example.demo.controller;
 
-import com.example.demo.service.BookService;
+import com.example.demo.dto.MovieDto;
+import com.example.demo.service.MovieService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 @RequiredArgsConstructor
 public class MovieController {
 
-    @Autowired
-    private BookService bookService;
+    private MovieService movieService;
 
-    @GetMapping("/main/book")
-    public String bookPage(Model model) {
-        model.addAttribute("book",bookService.findAll());
-        model.addAttribute("message", "My message to working controller");
-        return "book-category";
+    @GetMapping("/main/movie")
+    public String moviePage(Model model) {
+        getAllMovies(model);
+        model.addAttribute("movie", MovieDto.builder().build());
+        return "movie-category";
+    }
+
+
+    private void getAllMovies(Model model) {
+        model.addAttribute("movies",movieService.list());
     }
 
     //  wyświetlanie wszystkich elementów kategorii

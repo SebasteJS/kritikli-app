@@ -25,7 +25,7 @@ public class MusicService {
         return musicRepository.save(addedMusic).getId();
     }
 
-    public List<MusicDto> findAll() {
+    public List<MusicDto> list() {
         List<MusicDto> musicDtoList = new ArrayList<>();
         Iterable<Music> musics = musicRepository.findAll();
         for (Music musicFind : musics) {

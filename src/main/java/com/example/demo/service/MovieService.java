@@ -25,7 +25,7 @@ public class MovieService {
         return movieRepository.save(addedMovie).getId();
     }
 
-    public List<MovieDto> findAll() {
+    public List<MovieDto> list() {
         List<MovieDto> movieDtoList = new ArrayList<>();
         Iterable<Movie> movies = movieRepository.findAll();
         for (Movie movieFind : movies) {

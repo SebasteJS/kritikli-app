@@ -11,6 +11,12 @@
     <div th:include="/fragments/add-post.html"></div>
     <div th:include="/fragments/edit-post.html"></div>
     posts
+    <div th:each="music : ${musics}">
+        <p th:text="${music.author}"></p>
+        <p th:text="${music.title}"></p>
+        <p th:text="${music.description}"></p>
+        <p th:text="${music.criticalDescription}"></p>
+    </div>
     <div th:include="/fragments/footer.html"></div>
 </body>
 </html>
