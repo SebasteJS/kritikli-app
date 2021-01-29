@@ -38,7 +38,8 @@ public class UserService {
                 .password(passwordEncoder.encode(userDto.getPassword()))
                 .roles(roles)
                 .build();
-        return userRepository.save(addedUser).getId();
+        userRepository.save(addedUser);
+        return addedUser.getId();
     }
 
     public List<UserDto> findAll() {

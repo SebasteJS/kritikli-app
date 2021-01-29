@@ -23,15 +23,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/main/add-post").access("hasRole('ROLE_CLIENT')")
                 .antMatchers("/main").permitAll()
                 .antMatchers("/main/user-profile").access("hasRole('ROLE_CLIENT')")
-                .antMatchers("/main/login*").permitAll()
-                .antMatchers("/regist*").permitAll()
+                .antMatchers("/main/login").permitAll()
+                .antMatchers("/main/registration").permitAll()
                 .antMatchers("/header").permitAll()
                 .antMatchers("footer").permitAll()
                 .anyRequest().authenticated();
 
         http.formLogin()
-                .loginPage("/login")
-                .loginProcessingUrl("/login")
+                .loginPage("/main/login")
+                .loginProcessingUrl("/main/login")
                 .usernameParameter("login")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/main", true);
@@ -40,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .headers().frameOptions().disable();
 
         http.logout()
-                .logoutSuccessUrl("/login")
+                .logoutSuccessUrl("/main/login")
                 .logoutUrl("/logout");
     }
 
@@ -61,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authoritiesByUsernameQuery("SELECT u.login, r.role_type, 1 " +
                         "FROM user u " +
                         "INNER JOIN user_role ur ON ur.user_id = u.user_id " +
-                        "INNER JOIN role r ON r.role_id = ur.role_id" +
+                        "INNER JOIN role r ON r.role_id = ur.role_id " +
                         "WHERE u.login=?")
                 .dataSource(dataSource);
     }
