@@ -19,14 +19,14 @@ public class RegistrationController {
 
     private final UserService userService;
 
-    @GetMapping("/main/registration")
+    @GetMapping("/registration")
     public String registrationPage(Model model) {
         model.addAttribute("users", userService.findAll());
         model.addAttribute("user", new UserDto());
         return "registration";
     }
 
-    @PostMapping("/main/registration")
+    @PostMapping("/registration")
     public String registration(Model model, @ModelAttribute("user") @Valid UserDto user, BindingResult bindingResult) {
         if(!bindingResult.hasErrors()) {
             userService.add(user);

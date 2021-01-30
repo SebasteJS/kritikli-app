@@ -19,19 +19,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(final HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/resources/**").permitAll()
-                .antMatchers("/main/**").permitAll()
-                .antMatchers("/main/add-post").access("hasRole('ROLE_CLIENT')")
+                .antMatchers("/main/add-post").hasRole("USER")
                 .antMatchers("/main").permitAll()
-                .antMatchers("/main/user-profile").access("hasRole('ROLE_CLIENT')")
-                .antMatchers("/main/login").permitAll()
-                .antMatchers("/main/registration").permitAll()
-                .antMatchers("/header").permitAll()
-                .antMatchers("footer").permitAll()
+                .antMatchers("/main/**").hasRole("USER")
+                .antMatchers("/login").permitAll()
+                .antMatchers("/registration").permitAll()
                 .anyRequest().authenticated();
 
         http.formLogin()
-                .loginPage("/main/login")
-                .loginProcessingUrl("/main/login")
+                .loginPage("/login")
+                .loginProcessingUrl("/login")
                 .usernameParameter("login")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/main", true);
@@ -40,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .headers().frameOptions().disable();
 
         http.logout()
-                .logoutSuccessUrl("/main/login")
+                .logoutSuccessUrl("/login")
                 .logoutUrl("/logout");
     }
 

@@ -26,7 +26,7 @@ public class UserService {
     public Long add(UserDto userDto) {
         List<Role> roles = userDto.getRoles();
         if (roles == null) {
-            Role role = new Role(RoleType.CLIENT);
+            Role role = new Role(RoleType.USER);
             roleRepository.save(role);
             roles = Collections.singletonList(role);
         }

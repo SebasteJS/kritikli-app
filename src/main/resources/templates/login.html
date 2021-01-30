@@ -14,7 +14,7 @@
         </h1>
         <p class="alert alert-danger" th:if="${param.error}" th:text="'This Username or Password are wrong.'"></p>
 
-        <form method="post" action="/main/login" >
+        <form method="post" action="/login" >
             <div class="form-group">
                 <label for="login">Login</label>
                 <input type="text" class="form-control" id="login" name="login" placeholder="Enter login" th:required="required" th:autofocus="autofocus">

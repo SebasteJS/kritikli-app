@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class LoginController {
 
-    @GetMapping("/main/login")
+    @GetMapping("/login")
     public String loginPage() {
         return "login";
     }
