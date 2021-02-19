@@ -7,7 +7,7 @@
 <body >
     <div th:replace="/fragments/header.html"></div>
     <div th:include="/fragments/navbar.html"></div>
-    category
+    <h1>Books</h1>
     <div th:include="/fragments/add-post.html"></div>
     <div th:include="/fragments/edit-post.html"></div>
     posts
@@ -17,11 +17,6 @@
         <p th:text="${book.description}"></p>
         <p th:text="${book.criticalDescription}"></p>
     </div>
-<!--    <p th:each="book : ${books}" th:text="${book.author}"></p>-->
-<!--    <p th:each="book : ${books}" th:text="${book.title}"></p>-->
-<!--    <p th:each="book : ${books}" th:text="${book.description}"></p>-->
-<!--    <p th:each="book : ${books}" th:text="${book.criticalDescription}"></p>-->
-
     <div class="alert alert-primary" role="alert">
         A simple primary alert—check it out!
     </div>
