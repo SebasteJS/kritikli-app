@@ -9,7 +9,7 @@
     <div class="container">
         <br/>
         <div id="addPersonDiv">
-            <form class="form-horizontal" method="post" th:action="@{/registration}" th:object="${user}">
+            <form class="form-horizontal" th:method="post" th:action="@{/registration}" th:object="${user}">
                 <fieldset>
                     <div id="legend">
                         <legend class="">Add new user</legend>

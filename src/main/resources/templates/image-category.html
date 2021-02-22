@@ -8,7 +8,29 @@
     <div th:replace="/fragments/header.html"></div>
     <div th:include="/fragments/navbar.html"></div>
     <h1>Image</h1>
-    <div th:include="/fragments/add-post.html"></div>
+    <div class="container">
+        <div class="container">
+            <form th:method="post" th:action="@{/main/image}" th:object="${image}">
+                <h3>Add new book</h3>
+                <div>
+                    <label for="Author">Author</label>
+                    <input type="text" id="Author" placeholder="Enter author name" th:required="required" th:autofocus="autofocus" th:field="*{author}">
+                </div>
+                <div>
+                    <label for="Title">Title</label>
+                    <input type="text" id="Title" placeholder="Enter post title" th:required="required" th:autofocus="autofocus" th:field="*{title}">
+                </div>
+                <div>
+                    <label for="Description">Description</label>
+                    <input type="text" id="Description" placeholder="Enter post description" th:required="required" th:autofocus="autofocus" th:field="*{description}">
+                </div>
+                <div>
+                    <label for="criticalDescription">Critical Description</label>
+                    <input type="text" id="criticalDescription" placeholder="Enter post critical description" th:required="required" th:autofocus="autofocus" th:field="*{criticalDescription}">
+                </div>
+                <button type="submit" class="btn btn-primary">Add post</button>
+            </form>
+    </div>
     <div th:include="/fragments/edit-post.html"></div>
     posts
     <div th:each="image : ${images}">
