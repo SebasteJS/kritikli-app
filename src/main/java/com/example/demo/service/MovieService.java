@@ -22,8 +22,8 @@ public class MovieService {
                 .description(movieDto.getDescription())
                 .criticalDescription(movieDto.getCriticalDescription())
                 .build();
-        return movieRepository.save(addedMovie).getId();
-    }
+        movieRepository.save(addedMovie);
+        return addedMovie.getId();    }
 
     public List<MovieDto> list() {
         List<MovieDto> movieDtoList = new ArrayList<>();

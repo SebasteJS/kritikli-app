@@ -22,8 +22,8 @@ public class OtherService {
                 .description(otherDto.getDescription())
                 .criticalDescription(otherDto.getCriticalDescription())
                 .build();
-        return otherRepository.save(addedOther).getId();
-    }
+        otherRepository.save(addedOther);
+        return addedOther.getId();    }
 
     public List<OtherDto> list() {
         List<OtherDto> otherDtoList = new ArrayList<>();

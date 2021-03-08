@@ -22,8 +22,8 @@ public class PoetryService {
                 .description(poetryDto.getDescription())
                 .criticalDescription(poetryDto.getCriticalDescription())
                 .build();
-        return poetryRepository.save(addedPoetry).getId();
-    }
+        poetryRepository.save(addedPoetry);
+        return addedPoetry.getId();    }
 
     public List<PoetryDto> list() {
         List<PoetryDto> poetryDtoList = new ArrayList<>();

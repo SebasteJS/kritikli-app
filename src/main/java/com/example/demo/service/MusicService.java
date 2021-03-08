@@ -22,8 +22,8 @@ public class MusicService {
                 .description(musicDto.getDescription())
                 .criticalDescription(musicDto.getCriticalDescription())
                 .build();
-        return musicRepository.save(addedMusic).getId();
-    }
+        musicRepository.save(addedMusic);
+        return addedMusic.getId();    }
 
     public List<MusicDto> list() {
         List<MusicDto> musicDtoList = new ArrayList<>();

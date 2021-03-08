@@ -22,7 +22,8 @@ public class BookService {
                 .description(bookDto.getDescription())
                 .criticalDescription(bookDto.getCriticalDescription())
                 .build();
-        return bookRepository.save(addedBook).getId();
+        bookRepository.save(addedBook);
+        return addedBook.getId();
     }
 
     public List<BookDto> list() {

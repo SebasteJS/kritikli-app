@@ -22,8 +22,8 @@ public class SculptureService {
                 .description(sculptureDto.getDescription())
                 .criticalDescription(sculptureDto.getCriticalDescription())
                 .build();
-        return sculptureRepository.save(addedSculpture).getId();
-    }
+        sculptureRepository.save(addedSculpture);
+        return addedSculpture.getId();    }
 
     public List<SculptureDto> list() {
         List<SculptureDto> sculptureDtoList = new ArrayList<>();

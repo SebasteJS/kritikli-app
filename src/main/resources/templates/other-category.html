@@ -9,7 +9,6 @@
     <div th:include="/fragments/navbar.html"></div>
     <h1>Other</h1>
     <div class="container">
-        <div class="container">
             <form th:method="post" th:action="@{/main/other}" th:object="${other}">
                 <h3>Add new book</h3>
                 <div>
@@ -30,7 +29,8 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Add post</button>
             </form>
-    </div>    <div th:include="/fragments/edit-post.html"></div>
+    </div>
+        <div th:include="/fragments/edit-post.html"></div>
     posts
     <div th:each="other : ${others}">
         <p th:text="${other.author}"></p>

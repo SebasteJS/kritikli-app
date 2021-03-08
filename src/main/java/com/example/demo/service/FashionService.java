@@ -22,7 +22,8 @@ public class FashionService {
                 .description(fashionDto.getDescription())
                 .criticalDescription(fashionDto.getCriticalDescription())
                 .build();
-        return fashionRepository.save(addedFashion).getId();
+        fashionRepository.save(addedFashion);
+        return addedFashion.getId();
     }
 
     public List<FashionDto> list() {

@@ -22,7 +22,8 @@ public class ImageService {
                 .description(imageDto.getDescription())
                 .criticalDescription(imageDto.getCriticalDescription())
                 .build();
-        return imageRepository.save(addedImage).getId();
+        imageRepository.save(addedImage);
+        return addedImage.getId();
     }
 
     public List<ImageDto> list() {
