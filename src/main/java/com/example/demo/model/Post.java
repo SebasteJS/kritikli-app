@@ -1,29 +1,35 @@
-package com.example.demo.dto;
+package com.example.demo.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotEmpty;
+import javax.persistence.*;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class MusicDto {
+@Entity
+@Table(name = "Post")
+public class Post {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Long id;
 
-    @NotEmpty
+    @Column
     private String author;
 
-    @NotEmpty
+    @Column
     private String title;
 
-    @NotEmpty
+    @Column
     private String description;
 
-    @NotEmpty
+    @Column
     private String criticalDescription;
+
 }

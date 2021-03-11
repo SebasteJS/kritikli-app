@@ -1,10 +1,8 @@
 package com.example.demo.service;
 
-import com.example.demo.model.Book;
-import com.example.demo.model.Role;
+import com.example.demo.model.Post;
 import com.example.demo.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +22,8 @@ public class DatabaseInitializationService implements CommandLineRunner {
 
 
 
-        bookRepository.save(new Book(null, "Sebaste", "Sebaste", "Sebaste", "Sebaste"));
-        bookRepository.save(new Book(null, "Sebaste", "Sebaste", "Sebaste", "Sebaste"));
+        bookRepository.save(new Post(null, "Sebaste", "Sebaste", "Sebaste", "Sebaste"));
+        bookRepository.save(new Post(null, "Sebaste", "Sebaste", "Sebaste", "Sebaste"));
 
 
     }

@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.BookDto;
+import com.example.demo.dto.PostDto;
 import com.example.demo.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -22,12 +22,12 @@ public class BookController {
     @GetMapping("/main/book")
     public String bookPage(Model model) {
         getAllBooks(model);
-        model.addAttribute("book", BookDto.builder().build());
+        model.addAttribute("book", PostDto.builder().build());
         return "book-category";
     }
 
     @PostMapping("main/book")
-    public String addBookToPage(Model model, @ModelAttribute("book") @Valid BookDto book, BindingResult bindingResult) {
+    public String addBookToPage(Model model, @ModelAttribute("book") @Valid PostDto book, BindingResult bindingResult) {
         if(!bindingResult.hasErrors()) {
             bookService.add(book);
         }

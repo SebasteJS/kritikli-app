@@ -1,7 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.BookDto;
-import com.example.demo.dto.PoetryDto;
 import com.example.demo.service.PoetryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

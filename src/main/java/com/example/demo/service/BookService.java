@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.BookDto;
-import com.example.demo.model.Book;
+import com.example.demo.dto.PostDto;
+import com.example.demo.model.Post;
 import com.example.demo.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,42 +15,42 @@ import java.util.Optional;
 public class BookService {
     private final BookRepository bookRepository;
 
-    public Long add(BookDto bookDto) {
-        Book addedBook = Book.builder()
-                .author(bookDto.getAuthor())
-                .title(bookDto.getTitle())
-                .description(bookDto.getDescription())
-                .criticalDescription(bookDto.getCriticalDescription())
+    public Long add(PostDto postDto) {
+        Post addedPost = Post.builder()
+                .author(postDto.getAuthor())
+                .title(postDto.getTitle())
+                .description(postDto.getDescription())
+                .criticalDescription(postDto.getCriticalDescription())
                 .build();
-        bookRepository.save(addedBook);
-        return addedBook.getId();
+        bookRepository.save(addedPost);
+        return addedPost.getId();
     }
 
-    public List<BookDto> list() {
-        List<BookDto> bookDtoList = new ArrayList<>();
-        Iterable<Book> books = bookRepository.findAll();
-        for (Book bookFind : books) {
-            bookDtoList.add(
-                    BookDto.builder()
-                            .author(bookFind.getAuthor())
-                            .title(bookFind.getTitle())
-                            .description(bookFind.getDescription())
-                            .criticalDescription(bookFind.getCriticalDescription())
+    public List<PostDto> list() {
+        List<PostDto> postDtoList = new ArrayList<>();
+        Iterable<Post> books = bookRepository.findAll();
+        for (Post postFind : books) {
+            postDtoList.add(
+                    PostDto.builder()
+                            .author(postFind.getAuthor())
+                            .title(postFind.getTitle())
+                            .description(postFind.getDescription())
+                            .criticalDescription(postFind.getCriticalDescription())
                             .build());
         }
-        return bookDtoList;
+        return postDtoList;
     }
 
 
-    public void update(BookDto bookDto) {
-        Optional<Book> editedBook = bookRepository.findById(bookDto.getId());
+    public void update(PostDto postDto) {
+        Optional<Post> editedBook = bookRepository.findById(postDto.getId());
         if (editedBook.isPresent()) {
-            Book book = editedBook.get();
-            book.setAuthor(bookDto.getAuthor());
-            book.setTitle(bookDto.getTitle());
-            book.setDescription(bookDto.getDescription());
-            book.setCriticalDescription(bookDto.getCriticalDescription());
-            bookRepository.save(book);
+            Post post = editedBook.get();
+            post.setAuthor(postDto.getAuthor());
+            post.setTitle(postDto.getTitle());
+            post.setDescription(postDto.getDescription());
+            post.setCriticalDescription(postDto.getCriticalDescription());
+            bookRepository.save(post);
         }
     }
 

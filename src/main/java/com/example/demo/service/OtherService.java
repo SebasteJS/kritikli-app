@@ -1,7 +1,5 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.OtherDto;
-import com.example.demo.model.Other;
 import com.example.demo.repository.OtherRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

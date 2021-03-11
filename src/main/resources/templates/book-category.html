@@ -9,8 +9,8 @@
     <div th:include="/fragments/navbar.html"></div>
     <h1>Books</h1>
     <div class="container">
-        <form th:method="post" th:action="@{/main/book}" th:object="${book}">
-            <h3>Add new book</h3>
+        <form th:method="post" th:action="@{/main/post}" th:object="${post}">
+            <h3>Add new post</h3>
             <div>
                 <label for="Author">Author</label>
                 <input type="text" id="Author" placeholder="Enter author name" th:required="required" th:autofocus="autofocus" th:field="*{author}">
@@ -32,11 +32,11 @@
     </div>
     <div th:include="/fragments/edit-post.html"></div>
     posts
-    <div th:each="book : ${books}">
-        <p th:text="${book.author}"></p>
-        <p th:text="${book.title}"></p>
-        <p th:text="${book.description}"></p>
-        <p th:text="${book.criticalDescription}"></p>
+    <div th:each="post : ${books}">
+        <p th:text="${post.author}"></p>
+        <p th:text="${post.title}"></p>
+        <p th:text="${post.description}"></p>
+        <p th:text="${post.criticalDescription}"></p>
     </div>
     <div class="alert alert-primary" role="alert">
         A simple primary alert—check it out!

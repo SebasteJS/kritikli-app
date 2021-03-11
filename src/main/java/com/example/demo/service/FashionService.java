@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.FashionDto;
-import com.example.demo.model.Fashion;
+import com.example.demo.dto.PostDto;
+import com.example.demo.model.Post;
 import com.example.demo.repository.FashionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,8 +15,8 @@ import java.util.Optional;
 public class FashionService {
     private final FashionRepository fashionRepository;
 
-    public Long add(FashionDto fashionDto) {
-        Fashion addedFashion = Fashion.builder()
+    public Long add(PostDto fashionDto) {
+        Post addedFashion = Post.builder()
                 .author(fashionDto.getAuthor())
                 .title(fashionDto.getTitle())
                 .description(fashionDto.getDescription())
@@ -26,12 +26,12 @@ public class FashionService {
         return addedFashion.getId();
     }
 
-    public List<FashionDto> list() {
-        List<FashionDto> fashionDtoList = new ArrayList<>();
-        Iterable<Fashion> fashions = fashionRepository.findAll();
-        for (Fashion fashionFind : fashions) {
+    public List<PostDto> list() {
+        List<PostDto> fashionDtoList = new ArrayList<>();
+        Iterable<Post> fashions = fashionRepository.findAll();
+        for (Post fashionFind : fashions) {
             fashionDtoList.add(
-                    FashionDto.builder()
+                    PostDto.builder()
                             .author(fashionFind.getAuthor())
                             .title(fashionFind.getTitle())
                             .description(fashionFind.getDescription())
@@ -41,10 +41,10 @@ public class FashionService {
         return fashionDtoList;
     }
 
-    public void update(FashionDto fashionDto) {
-        Optional<Fashion> editedFashion = fashionRepository.findById(fashionDto.getId());
+    public void update(PostDto fashionDto) {
+        Optional<Post> editedFashion = fashionRepository.findById(fashionDto.getId());
         if (editedFashion.isPresent()) {
-            Fashion fashion = editedFashion.get();
+            Post fashion = editedFashion.get();
             fashion.setAuthor(fashionDto.getAuthor());
             fashion.setTitle(fashionDto.getTitle());
             fashion.setDescription(fashionDto.getDescription());

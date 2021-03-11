@@ -1,35 +1,29 @@
-package com.example.demo.model;
+package com.example.demo.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-@Entity
-@Table(name = "Other")
-public class Other {
+public class PostDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private Long id;
 
-    @Column
+    @NotEmpty
     private String author;
 
-    @Column
+    @NotEmpty
     private String title;
 
-    @Column
+    @NotEmpty
     private String description;
 
-    @Column
+    @NotEmpty
     private String criticalDescription;
-
 }

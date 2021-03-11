@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.ImageDto;
-import com.example.demo.model.Image;
+import com.example.demo.dto.PostDto;
+import com.example.demo.model.Post;
 import com.example.demo.repository.ImageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,8 +15,8 @@ import java.util.Optional;
 public class ImageService {
     private final ImageRepository imageRepository;
 
-    public Long add(ImageDto imageDto) {
-        Image addedImage = Image.builder()
+    public Long add(PostDto imageDto) {
+        Post addedImage = Post.builder()
                 .author(imageDto.getAuthor())
                 .title(imageDto.getTitle())
                 .description(imageDto.getDescription())

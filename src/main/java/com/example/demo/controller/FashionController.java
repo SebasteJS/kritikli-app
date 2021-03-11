@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.BookDto;
-import com.example.demo.dto.FashionDto;
+import com.example.demo.dto.PostDto;
 import com.example.demo.service.FashionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -22,12 +21,12 @@ public class FashionController {
     @GetMapping("/main/fashion")
     public String fashionPage(Model model) {
         getAllFashions(model);
-        model.addAttribute("fashion", FashionDto.builder().build());
+        model.addAttribute("fashion", PostDto.builder().build());
         return "fashion-category";
     }
 
     @PostMapping("main/fashion")
-    public String addFashionToPage(Model model, @ModelAttribute("fashion") @Valid FashionDto fashion, BindingResult bindingResult) {
+    public String addFashionToPage(Model model, @ModelAttribute("fashion") @Valid PostDto fashion, BindingResult bindingResult) {
         if(!bindingResult.hasErrors()) {
             fashionService.add(fashion);
         }

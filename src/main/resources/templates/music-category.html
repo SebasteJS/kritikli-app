@@ -10,7 +10,7 @@
     <h1>Music</h1>
     <div class="container">
             <form th:method="post" th:action="@{/main/music}" th:object="${music}">
-                <h3>Add new book</h3>
+                <h3>Add new post</h3>
                 <div>
                     <label for="Author">Author</label>
                     <input type="text" id="Author" placeholder="Enter author name" th:required="required" th:autofocus="autofocus" th:field="*{author}">

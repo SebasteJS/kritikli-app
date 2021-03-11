@@ -1,7 +1,5 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.SculptureDto;
-import com.example.demo.model.Sculpture;
 import com.example.demo.repository.SculptureRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,5 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.PoetryDto;
-import com.example.demo.model.Poetry;
 import com.example.demo.repository.PoetryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
