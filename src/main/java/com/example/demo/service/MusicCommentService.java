@@ -16,20 +16,20 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class MusicCommentService {
-    private final BookCommentRepository bookCommentRepository;
+    private final MusicCommentRepository musicCommentRepository;
 
     public Long add(CommentDto commentDto) {
         Comment addedComment = Comment.builder()
                 .commentText(commentDto.getCommentText())
                 .build();
-        bookCommentRepository.save(addedComment);
+        musicCommentRepository.save(addedComment);
         return addedComment.getId();
     }
 
     public List<CommentDto> list() {
         List<CommentDto> commentDtoList = new ArrayList<>();
-        Iterable<Comment> bookComments = bookCommentRepository.findAll();
-        for (Comment commentFind : bookComments) {
+        Iterable<Comment> musicComments = bookCommentRepository.findAll();
+        for (Comment commentFind : musicComments) {
             commentDtoList.add(
                     CommentDto.builder()
                             .commentText(commentFind.getCommentText())
@@ -40,15 +40,15 @@ public class MusicCommentService {
 
 
     public void update(CommentDto commentDto) {
-        Optional<Comment> editedBookComment = bookCommentRepository.findById(commentDto.getId());
-        if (editedBookComment.isPresent()) {
-            Comment comment = editedBookComment.get();
+        Optional<Comment> editedMusicComment = musicCommentRepository.findById(commentDto.getId());
+        if (editedMusicComment.isPresent()) {
+            Comment comment = editedMusicComment.get();
             comment.setCommentText(commentDto.getCommentText());
-            bookCommentRepository.save(comment);
+            musicCommentRepository.save(comment);
         }
     }
 
     public void delete(Long userId) {
-        bookCommentRepository.deleteById(userId);
+        musicCommentRepository.deleteById(userId);
     }
 }

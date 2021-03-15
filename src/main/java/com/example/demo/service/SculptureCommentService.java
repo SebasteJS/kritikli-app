@@ -6,6 +6,7 @@ import com.example.demo.model.Comment;
 import com.example.demo.model.Post;
 import com.example.demo.repository.BookCommentRepository;
 import com.example.demo.repository.BookRepository;
+import com.example.demo.repository.SculptureCommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,20 +17,20 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class SculptureCommentService {
-    private final BookCommentRepository bookCommentRepository;
+    private final SculptureCommentRepository sculptureCommentRepository;
 
     public Long add(CommentDto commentDto) {
         Comment addedComment = Comment.builder()
                 .commentText(commentDto.getCommentText())
                 .build();
-        bookCommentRepository.save(addedComment);
+        sculptureCommentRepository.save(addedComment);
         return addedComment.getId();
     }
 
     public List<CommentDto> list() {
         List<CommentDto> commentDtoList = new ArrayList<>();
-        Iterable<Comment> bookComments = bookCommentRepository.findAll();
-        for (Comment commentFind : bookComments) {
+        Iterable<Comment> sculptureComments = sculptureCommentRepository.findAll();
+        for (Comment commentFind : sculptureComments) {
             commentDtoList.add(
                     CommentDto.builder()
                             .commentText(commentFind.getCommentText())
@@ -40,15 +41,15 @@ public class SculptureCommentService {
 
 
     public void update(CommentDto commentDto) {
-        Optional<Comment> editedBookComment = bookCommentRepository.findById(commentDto.getId());
-        if (editedBookComment.isPresent()) {
-            Comment comment = editedBookComment.get();
+        Optional<Comment> editedSculptureComment = sculptureCommentRepository.findById(commentDto.getId());
+        if (editedSculptureComment.isPresent()) {
+            Comment comment = editedSculptureComment.get();
             comment.setCommentText(commentDto.getCommentText());
-            bookCommentRepository.save(comment);
+            sculptureCommentRepository.save(comment);
         }
     }
 
     public void delete(Long userId) {
-        bookCommentRepository.deleteById(userId);
+        sculptureCommentRepository.deleteById(userId);
     }
 }

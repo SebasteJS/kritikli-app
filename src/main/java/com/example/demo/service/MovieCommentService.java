@@ -16,20 +16,20 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class MovieCommentService {
-    private final BookCommentRepository bookCommentRepository;
+    private final MovieCommentRepository movieCommentRepository;
 
     public Long add(CommentDto commentDto) {
         Comment addedComment = Comment.builder()
                 .commentText(commentDto.getCommentText())
                 .build();
-        bookCommentRepository.save(addedComment);
+        movieCommentRepository.save(addedComment);
         return addedComment.getId();
     }
 
     public List<CommentDto> list() {
         List<CommentDto> commentDtoList = new ArrayList<>();
-        Iterable<Comment> bookComments = bookCommentRepository.findAll();
-        for (Comment commentFind : bookComments) {
+        Iterable<Comment> movieComments = movieCommentRepository.findAll();
+        for (Comment commentFind : movieComments) {
             commentDtoList.add(
                     CommentDto.builder()
                             .commentText(commentFind.getCommentText())
@@ -40,15 +40,15 @@ public class MovieCommentService {
 
 
     public void update(CommentDto commentDto) {
-        Optional<Comment> editedBookComment = bookCommentRepository.findById(commentDto.getId());
-        if (editedBookComment.isPresent()) {
-            Comment comment = editedBookComment.get();
+        Optional<Comment> editedMovieComment = movieCommentRepository.findById(commentDto.getId());
+        if (editedMovieComment.isPresent()) {
+            Comment comment = editedMovieComment.get();
             comment.setCommentText(commentDto.getCommentText());
-            bookCommentRepository.save(comment);
+            movieCommentRepository.save(comment);
         }
     }
 
     public void delete(Long userId) {
-        bookCommentRepository.deleteById(userId);
+        movieCommentRepository.deleteById(userId);
     }
 }
