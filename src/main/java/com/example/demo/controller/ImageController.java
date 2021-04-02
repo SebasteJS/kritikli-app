@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.PostDto;
 import com.example.demo.service.ImageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -20,12 +21,12 @@ public class ImageController {
     @GetMapping("/main/image")
     public String imagePage(Model model) {
         getAllImages(model);
-        model.addAttribute("image", ImageDto.builder().build());
+        model.addAttribute("image", PostDto.builder().build());
         return "image-category";
     }
 
     @PostMapping("main/image")
-    public String addImageToPage(Model model, @ModelAttribute("image") @Valid ImageDto image, BindingResult bindingResult) {
+    public String addImageToPage(Model model, @ModelAttribute("image") @Valid PostDto image, BindingResult bindingResult) {
         if(!bindingResult.hasErrors()) {
             imageService.add(image);
         }

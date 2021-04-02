@@ -39,6 +39,4 @@ public class BookController {
         model.addAttribute("books",bookService.list());
     }
 
-//  wyświetlanie wszystkich elementów kategorii
-//
 }

@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.PostDto;
 import com.example.demo.service.MovieService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -20,12 +21,12 @@ public class MovieController {
     @GetMapping("/main/movie")
     public String moviePage(Model model) {
         getAllMovies(model);
-        model.addAttribute("movie", MovieDto.builder().build());
+        model.addAttribute("movie", PostDto.builder().build());
         return "movie-category";
     }
 
     @PostMapping("main/movie")
-    public String addMovieToPage(Model model, @ModelAttribute("movie") @Valid MovieDto movie, BindingResult bindingResult) {
+    public String addMovieToPage(Model model, @ModelAttribute("movie") @Valid PostDto movie, BindingResult bindingResult) {
         if(!bindingResult.hasErrors()) {
             movieService.add(movie);
         }

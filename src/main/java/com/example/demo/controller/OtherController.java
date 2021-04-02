@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.PostDto;
 import com.example.demo.service.OtherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -20,12 +21,12 @@ public class OtherController {
     @GetMapping("/main/other")
     public String otherPage(Model model) {
         getAllOthers(model);
-        model.addAttribute("other", OtherDto.builder().build());
+        model.addAttribute("other", PostDto.builder().build());
         return "other-category";
     }
 
     @PostMapping("main/other")
-    public String addOtherToPage(Model model, @ModelAttribute("other") @Valid OtherDto other, BindingResult bindingResult) {
+    public String addOtherToPage(Model model, @ModelAttribute("other") @Valid PostDto other, BindingResult bindingResult) {
         if(!bindingResult.hasErrors()) {
             otherService.add(other);
         }

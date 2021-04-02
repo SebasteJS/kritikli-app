@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.PostDto;
 import com.example.demo.service.MusicService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -20,12 +21,12 @@ public class MusicController {
     @GetMapping("/main/music")
     public String musicPage(Model model) {
         getAllMusics(model);
-        model.addAttribute("music", MusicDto.builder().build());
+        model.addAttribute("music", PostDto.builder().build());
         return "music-category";
     }
 
     @PostMapping("main/music")
-    public String addMusicToPage(Model model, @ModelAttribute("music") @Valid MusicDto music, BindingResult bindingResult) {
+    public String addMusicToPage(Model model, @ModelAttribute("music") @Valid PostDto music, BindingResult bindingResult) {
         if(!bindingResult.hasErrors()) {
             musicService.add(music);
         }

@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.PostDto;
+import com.example.demo.model.Post;
 import com.example.demo.repository.MusicRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,40 +15,42 @@ import java.util.Optional;
 public class MusicService {
     private final MusicRepository musicRepository;
 
-    public Long add(MusicDto musicDto) {
-        Music addedMusic = Music.builder()
-                .author(musicDto.getAuthor())
-                .title(musicDto.getTitle())
-                .description(musicDto.getDescription())
-                .criticalDescription(musicDto.getCriticalDescription())
+    public Long add(PostDto postDto) {
+        Post addedPost = Post.builder()
+                .author(postDto.getAuthor())
+                .title(postDto.getTitle())
+                .description(postDto.getDescription())
+                .criticalDescription(postDto.getCriticalDescription())
                 .build();
-        musicRepository.save(addedMusic);
-        return addedMusic.getId();    }
-
-    public List<MusicDto> list() {
-        List<MusicDto> musicDtoList = new ArrayList<>();
-        Iterable<Music> musics = musicRepository.findAll();
-        for (Music musicFind : musics) {
-            musicDtoList.add(
-                    MusicDto.builder()
-                            .author(musicFind.getAuthor())
-                            .title(musicFind.getTitle())
-                            .description(musicFind.getDescription())
-                            .criticalDescription(musicFind.getCriticalDescription())
-                            .build());
-        }
-        return musicDtoList;
+        musicRepository.save(addedPost);
+        return addedPost.getId();
     }
 
-    public void update(MusicDto musicDto) {
-        Optional<Music> editedMusic = musicRepository.findById(musicDto.getId());
-        if (editedMusic.isPresent()) {
-            Music music = editedMusic.get();
-            music.setAuthor(musicDto.getAuthor());
-            music.setTitle(musicDto.getTitle());
-            music.setDescription(musicDto.getDescription());
-            music.setCriticalDescription(musicDto.getCriticalDescription());
-            musicRepository.save(music);
+    public List<PostDto> list() {
+        List<PostDto> postDtoList = new ArrayList<>();
+        Iterable<Post> books = musicRepository.findAll();
+        for (Post postFind : books) {
+            postDtoList.add(
+                    PostDto.builder()
+                            .author(postFind.getAuthor())
+                            .title(postFind.getTitle())
+                            .description(postFind.getDescription())
+                            .criticalDescription(postFind.getCriticalDescription())
+                            .build());
+        }
+        return postDtoList;
+    }
+
+
+    public void update(PostDto postDto) {
+        Optional<Post> editedBook = musicRepository.findById(postDto.getId());
+        if (editedBook.isPresent()) {
+            Post post = editedBook.get();
+            post.setAuthor(postDto.getAuthor());
+            post.setTitle(postDto.getTitle());
+            post.setDescription(postDto.getDescription());
+            post.setCriticalDescription(postDto.getCriticalDescription());
+            musicRepository.save(post);
         }
     }
 

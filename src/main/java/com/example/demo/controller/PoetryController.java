@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.PostDto;
 import com.example.demo.service.PoetryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -20,12 +21,12 @@ public class PoetryController {
     @GetMapping("/main/poetry")
     public String poetryPage(Model model) {
         getAllPotries(model);
-        model.addAttribute("poetry", PoetryDto.builder().build());
+        model.addAttribute("poetry", PostDto.builder().build());
         return "poetry-category";
     }
 
     @PostMapping("main/poetry")
-    public String addPoetryToPage(Model model, @ModelAttribute("poetry") @Valid PoetryDto poetry, BindingResult bindingResult) {
+    public String addPoetryToPage(Model model, @ModelAttribute("poetry") @Valid PostDto poetry, BindingResult bindingResult) {
         if(!bindingResult.hasErrors()) {
             poetryService.add(poetry);
         }

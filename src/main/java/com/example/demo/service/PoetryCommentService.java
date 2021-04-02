@@ -42,7 +42,7 @@ public class PoetryCommentService {
 
     public void update(CommentDto commentDto) {
         Optional<Comment> editedPoetryComment = poetryCommentRepository.findById(commentDto.getId());
-        if (editedBookComment.isPresent()) {
+        if (editedPoetryComment.isPresent()) {
             Comment comment = editedPoetryComment.get();
             comment.setCommentText(commentDto.getCommentText());
             poetryCommentRepository.save(comment);

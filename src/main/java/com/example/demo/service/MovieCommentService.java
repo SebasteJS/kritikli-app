@@ -6,6 +6,7 @@ import com.example.demo.model.Comment;
 import com.example.demo.model.Post;
 import com.example.demo.repository.BookCommentRepository;
 import com.example.demo.repository.BookRepository;
+import com.example.demo.repository.MovieCommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

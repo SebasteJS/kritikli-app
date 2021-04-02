@@ -15,41 +15,42 @@ import java.util.Optional;
 public class FashionService {
     private final FashionRepository fashionRepository;
 
-    public Long add(PostDto fashionDto) {
-        Post addedFashion = Post.builder()
-                .author(fashionDto.getAuthor())
-                .title(fashionDto.getTitle())
-                .description(fashionDto.getDescription())
-                .criticalDescription(fashionDto.getCriticalDescription())
+    public Long add(PostDto postDto) {
+        Post addedPost = Post.builder()
+                .author(postDto.getAuthor())
+                .title(postDto.getTitle())
+                .description(postDto.getDescription())
+                .criticalDescription(postDto.getCriticalDescription())
                 .build();
-        fashionRepository.save(addedFashion);
-        return addedFashion.getId();
+        fashionRepository.save(addedPost);
+        return addedPost.getId();
     }
 
     public List<PostDto> list() {
-        List<PostDto> fashionDtoList = new ArrayList<>();
-        Iterable<Post> fashions = fashionRepository.findAll();
-        for (Post fashionFind : fashions) {
-            fashionDtoList.add(
+        List<PostDto> postDtoList = new ArrayList<>();
+        Iterable<Post> books = fashionRepository.findAll();
+        for (Post postFind : books) {
+            postDtoList.add(
                     PostDto.builder()
-                            .author(fashionFind.getAuthor())
-                            .title(fashionFind.getTitle())
-                            .description(fashionFind.getDescription())
-                            .criticalDescription(fashionFind.getCriticalDescription())
+                            .author(postFind.getAuthor())
+                            .title(postFind.getTitle())
+                            .description(postFind.getDescription())
+                            .criticalDescription(postFind.getCriticalDescription())
                             .build());
         }
-        return fashionDtoList;
+        return postDtoList;
     }
 
-    public void update(PostDto fashionDto) {
-        Optional<Post> editedFashion = fashionRepository.findById(fashionDto.getId());
-        if (editedFashion.isPresent()) {
-            Post fashion = editedFashion.get();
-            fashion.setAuthor(fashionDto.getAuthor());
-            fashion.setTitle(fashionDto.getTitle());
-            fashion.setDescription(fashionDto.getDescription());
-            fashion.setCriticalDescription(fashionDto.getCriticalDescription());
-            fashionRepository.save(fashion);
+
+    public void update(PostDto postDto) {
+        Optional<Post> editedBook = fashionRepository.findById(postDto.getId());
+        if (editedBook.isPresent()) {
+            Post post = editedBook.get();
+            post.setAuthor(postDto.getAuthor());
+            post.setTitle(postDto.getTitle());
+            post.setDescription(postDto.getDescription());
+            post.setCriticalDescription(postDto.getCriticalDescription());
+            fashionRepository.save(post);
         }
     }
 

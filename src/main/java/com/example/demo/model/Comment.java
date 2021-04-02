@@ -20,8 +20,9 @@ public class Comment {
     @Column
     private Long id;
 
-    @Column
-    private Long postId;
+    @ManyToOne
+    @JoinColumn(name = "post_id", nullable = false)
+    private Post post;
 
     @Column
     private String commentText;

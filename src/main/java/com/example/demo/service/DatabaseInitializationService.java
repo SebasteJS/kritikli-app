@@ -22,8 +22,7 @@ public class DatabaseInitializationService implements CommandLineRunner {
 
 
 
-        bookRepository.save(new Post(null, "Sebaste", "Sebaste", "Sebaste", "Sebaste"));
-        bookRepository.save(new Post(null, "Sebaste", "Sebaste", "Sebaste", "Sebaste"));
+        bookRepository.save(new Post(null, "Sebaste", "Sebaste", "Sebaste", "Sebaste",null));
 
 
     }

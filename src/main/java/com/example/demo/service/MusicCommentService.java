@@ -6,6 +6,7 @@ import com.example.demo.model.Comment;
 import com.example.demo.model.Post;
 import com.example.demo.repository.BookCommentRepository;
 import com.example.demo.repository.BookRepository;
+import com.example.demo.repository.MusicCommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +29,7 @@ public class MusicCommentService {
 
     public List<CommentDto> list() {
         List<CommentDto> commentDtoList = new ArrayList<>();
-        Iterable<Comment> musicComments = bookCommentRepository.findAll();
+        Iterable<Comment> musicComments = musicCommentRepository.findAll();
         for (Comment commentFind : musicComments) {
             commentDtoList.add(
                     CommentDto.builder()

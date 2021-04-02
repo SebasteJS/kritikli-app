@@ -4,8 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -31,5 +33,8 @@ public class Post {
 
     @Column
     private String criticalDescription;
+
+    @OneToMany(mappedBy = "Post")
+    private Set<Comment> comments;
 
 }

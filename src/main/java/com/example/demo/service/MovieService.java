@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.PostDto;
+import com.example.demo.model.Post;
 import com.example.demo.repository.MovieRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,40 +15,42 @@ import java.util.Optional;
 public class MovieService {
     private final MovieRepository movieRepository;
 
-    public Long add(MovieDto movieDto) {
-        Movie addedMovie = Movie.builder()
-                .author(movieDto.getAuthor())
-                .title(movieDto.getTitle())
-                .description(movieDto.getDescription())
-                .criticalDescription(movieDto.getCriticalDescription())
+    public Long add(PostDto postDto) {
+        Post addedPost = Post.builder()
+                .author(postDto.getAuthor())
+                .title(postDto.getTitle())
+                .description(postDto.getDescription())
+                .criticalDescription(postDto.getCriticalDescription())
                 .build();
-        movieRepository.save(addedMovie);
-        return addedMovie.getId();    }
-
-    public List<MovieDto> list() {
-        List<MovieDto> movieDtoList = new ArrayList<>();
-        Iterable<Movie> movies = movieRepository.findAll();
-        for (Movie movieFind : movies) {
-            movieDtoList.add(
-                    MovieDto.builder()
-                            .author(movieFind.getAuthor())
-                            .title(movieFind.getTitle())
-                            .description(movieFind.getDescription())
-                            .criticalDescription(movieFind.getCriticalDescription())
-                            .build());
-        }
-        return movieDtoList;
+        movieRepository.save(addedPost);
+        return addedPost.getId();
     }
 
-    public void update(MovieDto movieDto) {
-        Optional<Movie> editedMovie = movieRepository.findById(movieDto.getId());
-        if (editedMovie.isPresent()) {
-            Movie movie = editedMovie.get();
-            movie.setAuthor(movieDto.getAuthor());
-            movie.setTitle(movieDto.getTitle());
-            movie.setDescription(movieDto.getDescription());
-            movie.setCriticalDescription(movieDto.getCriticalDescription());
-            movieRepository.save(movie);
+    public List<PostDto> list() {
+        List<PostDto> postDtoList = new ArrayList<>();
+        Iterable<Post> books = movieRepository.findAll();
+        for (Post postFind : books) {
+            postDtoList.add(
+                    PostDto.builder()
+                            .author(postFind.getAuthor())
+                            .title(postFind.getTitle())
+                            .description(postFind.getDescription())
+                            .criticalDescription(postFind.getCriticalDescription())
+                            .build());
+        }
+        return postDtoList;
+    }
+
+
+    public void update(PostDto postDto) {
+        Optional<Post> editedBook = movieRepository.findById(postDto.getId());
+        if (editedBook.isPresent()) {
+            Post post = editedBook.get();
+            post.setAuthor(postDto.getAuthor());
+            post.setTitle(postDto.getTitle());
+            post.setDescription(postDto.getDescription());
+            post.setCriticalDescription(postDto.getCriticalDescription());
+            movieRepository.save(post);
         }
     }
 

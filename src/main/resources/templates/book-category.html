@@ -9,7 +9,7 @@
     <div th:include="/fragments/navbar.html"></div>
     <h1>Books</h1>
     <div class="container">
-        <form th:method="post" th:action="@{/main/post}" th:object="${post}">
+        <form th:method="post" th:action="@{/main/book}" th:object="${post}">
             <h3>Add new post</h3>
             <div>
                 <label for="Author">Author</label>
@@ -27,7 +27,7 @@
                 <label for="criticalDescription">Critical Description</label>
                 <input type="text" id="criticalDescription" placeholder="Enter post critical description" th:required="required" th:autofocus="autofocus" th:field="*{criticalDescription}">
             </div>
-            <button type="submit" class="btn btn-primary">Add post</button>
+            <button type="submit" class="btn btn-primary" id="newPost">Add post</button>
         </form>
     </div>
     <div th:include="/fragments/edit-post.html"></div>

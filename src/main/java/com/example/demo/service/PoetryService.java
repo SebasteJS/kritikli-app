@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.PostDto;
+import com.example.demo.model.Post;
 import com.example.demo.repository.PoetryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,40 +15,42 @@ import java.util.Optional;
 public class PoetryService {
     private final PoetryRepository poetryRepository;
 
-    public Long add(PoetryDto poetryDto) {
-        Poetry addedPoetry = Poetry.builder()
-                .author(poetryDto.getAuthor())
-                .title(poetryDto.getTitle())
-                .description(poetryDto.getDescription())
-                .criticalDescription(poetryDto.getCriticalDescription())
+    public Long add(PostDto postDto) {
+        Post addedPost = Post.builder()
+                .author(postDto.getAuthor())
+                .title(postDto.getTitle())
+                .description(postDto.getDescription())
+                .criticalDescription(postDto.getCriticalDescription())
                 .build();
-        poetryRepository.save(addedPoetry);
-        return addedPoetry.getId();    }
-
-    public List<PoetryDto> list() {
-        List<PoetryDto> poetryDtoList = new ArrayList<>();
-        Iterable<Poetry> poetries = poetryRepository.findAll();
-        for (Poetry poetryFind : poetries) {
-            poetryDtoList.add(
-                    PoetryDto.builder()
-                            .author(poetryFind.getAuthor())
-                            .title(poetryFind.getTitle())
-                            .description(poetryFind.getDescription())
-                            .criticalDescription(poetryFind.getCriticalDescription())
-                            .build());
-        }
-        return poetryDtoList;
+        poetryRepository.save(addedPost);
+        return addedPost.getId();
     }
 
-    public void update(PoetryDto poetryDto) {
-        Optional<Poetry> editedPoetry = poetryRepository.findById(poetryDto.getId());
-        if (editedPoetry.isPresent()) {
-            Poetry poetry = editedPoetry.get();
-            poetry.setAuthor(poetryDto.getAuthor());
-            poetry.setTitle(poetryDto.getTitle());
-            poetry.setDescription(poetryDto.getDescription());
-            poetry.setCriticalDescription(poetryDto.getCriticalDescription());
-            poetryRepository.save(poetry);
+    public List<PostDto> list() {
+        List<PostDto> postDtoList = new ArrayList<>();
+        Iterable<Post> books = poetryRepository.findAll();
+        for (Post postFind : books) {
+            postDtoList.add(
+                    PostDto.builder()
+                            .author(postFind.getAuthor())
+                            .title(postFind.getTitle())
+                            .description(postFind.getDescription())
+                            .criticalDescription(postFind.getCriticalDescription())
+                            .build());
+        }
+        return postDtoList;
+    }
+
+
+    public void update(PostDto postDto) {
+        Optional<Post> editedBook = poetryRepository.findById(postDto.getId());
+        if (editedBook.isPresent()) {
+            Post post = editedBook.get();
+            post.setAuthor(postDto.getAuthor());
+            post.setTitle(postDto.getTitle());
+            post.setDescription(postDto.getDescription());
+            post.setCriticalDescription(postDto.getCriticalDescription());
+            poetryRepository.save(post);
         }
     }
 

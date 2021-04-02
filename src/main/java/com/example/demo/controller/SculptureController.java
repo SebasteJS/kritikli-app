@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.PostDto;
 import com.example.demo.service.SculptureService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -20,13 +21,13 @@ public class SculptureController {
     @GetMapping("/main/sculpture")
     public String sculpturePage(Model model) {
         getAllSculptures(model);
-        model.addAttribute("sculpture", SculptureDto.builder().build());
+        model.addAttribute("sculpture", PostDto.builder().build());
         model.addAttribute("message", "My message to working controller");
         return "sculpture-category";
     }
 
     @PostMapping("main/sculpture")
-    public String addSculptureToPage(Model model, @ModelAttribute("sculpture") @Valid SculptureDto sculpture, BindingResult bindingResult) {
+    public String addSculptureToPage(Model model, @ModelAttribute("sculpture") @Valid PostDto sculpture, BindingResult bindingResult) {
         if(!bindingResult.hasErrors()) {
             sculptureService.add(sculpture);
         }

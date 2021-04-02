@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.PostDto;
+import com.example.demo.model.Post;
 import com.example.demo.repository.OtherRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,40 +15,42 @@ import java.util.Optional;
 public class OtherService {
     private final OtherRepository otherRepository;
 
-    public Long add(OtherDto otherDto) {
-        Other addedOther = Other.builder()
-                .author(otherDto.getAuthor())
-                .title(otherDto.getTitle())
-                .description(otherDto.getDescription())
-                .criticalDescription(otherDto.getCriticalDescription())
+    public Long add(PostDto postDto) {
+        Post addedPost = Post.builder()
+                .author(postDto.getAuthor())
+                .title(postDto.getTitle())
+                .description(postDto.getDescription())
+                .criticalDescription(postDto.getCriticalDescription())
                 .build();
-        otherRepository.save(addedOther);
-        return addedOther.getId();    }
-
-    public List<OtherDto> list() {
-        List<OtherDto> otherDtoList = new ArrayList<>();
-        Iterable<Other> others = otherRepository.findAll();
-        for (Other otherFind : others) {
-            otherDtoList.add(
-                    OtherDto.builder()
-                            .author(otherFind.getAuthor())
-                            .title(otherFind.getTitle())
-                            .description(otherFind.getDescription())
-                            .criticalDescription(otherFind.getCriticalDescription())
-                            .build());
-        }
-        return otherDtoList;
+        otherRepository.save(addedPost);
+        return addedPost.getId();
     }
 
-    public void update(OtherDto otherDto) {
-        Optional<Other> editedOther = otherRepository.findById(otherDto.getId());
-        if (editedOther.isPresent()) {
-            Other other = editedOther.get();
-            other.setAuthor(otherDto.getAuthor());
-            other.setTitle(otherDto.getTitle());
-            other.setDescription(otherDto.getDescription());
-            other.setCriticalDescription(otherDto.getCriticalDescription());
-            otherRepository.save(other);
+    public List<PostDto> list() {
+        List<PostDto> postDtoList = new ArrayList<>();
+        Iterable<Post> books = otherRepository.findAll();
+        for (Post postFind : books) {
+            postDtoList.add(
+                    PostDto.builder()
+                            .author(postFind.getAuthor())
+                            .title(postFind.getTitle())
+                            .description(postFind.getDescription())
+                            .criticalDescription(postFind.getCriticalDescription())
+                            .build());
+        }
+        return postDtoList;
+    }
+
+
+    public void update(PostDto postDto) {
+        Optional<Post> editedBook = otherRepository.findById(postDto.getId());
+        if (editedBook.isPresent()) {
+            Post post = editedBook.get();
+            post.setAuthor(postDto.getAuthor());
+            post.setTitle(postDto.getTitle());
+            post.setDescription(postDto.getDescription());
+            post.setCriticalDescription(postDto.getCriticalDescription());
+            otherRepository.save(post);
         }
     }
 
