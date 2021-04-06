@@ -6,9 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -22,7 +20,6 @@ public class SculptureController {
     public String sculpturePage(Model model) {
         getAllSculptures(model);
         model.addAttribute("sculpture", PostDto.builder().build());
-        model.addAttribute("message", "My message to working controller");
         return "sculpture-category";
     }
 
@@ -32,6 +29,22 @@ public class SculptureController {
             sculptureService.add(sculpture);
         }
         getAllSculptures(model);
+        return "sculpture-category";
+    }
+
+    @PutMapping("main/sculpture/{postId}")
+    public String editSculpture(@PathVariable Long postId, @Valid PostDto postDto) {
+        if(postDto.getId().equals(postId)) {
+            sculptureService.update(postDto);
+        }
+        return "sculpture-category";
+    }
+
+    @DeleteMapping("main/sculpture/{postId}")
+    public String deleteSculpture(@PathVariable Long postId, @Valid PostDto postDto) {
+        if(postDto.getId().equals(postId)) {
+            sculptureService.delete(postId);
+        }
         return "sculpture-category";
     }
 

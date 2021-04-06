@@ -6,9 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -34,8 +32,23 @@ public class FashionController {
         return "fashion-category";
     }
 
+    @PutMapping("main/fashion/{postId}")
+    public String editFashion(@PathVariable Long postId, @Valid PostDto postDto) {
+        if(postDto.getId().equals(postId)) {
+            fashionService.update(postDto);
+        }
+        return "fashion-category";
+    }
+
+    @DeleteMapping("main/fashion/{postId}")
+    public String deleteFashion(@PathVariable Long postId, @Valid PostDto postDto) {
+        if(postDto.getId().equals(postId)) {
+            fashionService.delete(postId);
+        }
+        return "fashion-category";
+    }
+
     private void getAllFashions(Model model) {
         model.addAttribute("fashions",fashionService.list());
     }
-    //  wyświetlanie wszystkich elementów kategorii
 }

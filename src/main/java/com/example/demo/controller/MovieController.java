@@ -6,9 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -27,17 +25,31 @@ public class MovieController {
 
     @PostMapping("main/movie")
     public String addMovieToPage(Model model, @ModelAttribute("movie") @Valid PostDto movie, BindingResult bindingResult) {
-        if(!bindingResult.hasErrors()) {
+        if (!bindingResult.hasErrors()) {
             movieService.add(movie);
         }
         getAllMovies(model);
         return "movie-category";
     }
 
-
-    private void getAllMovies(Model model) {
-        model.addAttribute("movies",movieService.list());
+    @PutMapping("main/movie/{postId}")
+    public String editMovie(@PathVariable Long postId, @Valid PostDto postDto) {
+        if (postDto.getId().equals(postId)) {
+            movieService.update(postDto);
+        }
+        return "movie-category";
     }
 
-    //  wyświetlanie wszystkich elementów kategorii
+    @DeleteMapping("main/movie/{postId}")
+    public String deleteMovie(@PathVariable Long postId, @Valid PostDto postDto) {
+        if (postDto.getId().equals(postId)) {
+            movieService.delete(postId);
+        }
+        return "movie-category";
+    }
+
+    private void getAllMovies(Model model) {
+        model.addAttribute("movies", movieService.list());
+    }
+
 }

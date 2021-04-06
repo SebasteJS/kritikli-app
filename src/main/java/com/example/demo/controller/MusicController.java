@@ -6,9 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -34,9 +32,24 @@ public class MusicController {
         return "music-category";
     }
 
+    @PutMapping("main/music/{postId}")
+    public String editMusic(@PathVariable Long postId, @Valid PostDto postDto) {
+        if(postDto.getId().equals(postId)) {
+            musicService.update(postDto);
+        }
+        return "music-category";
+    }
+
+    @DeleteMapping("main/music/{postId}")
+    public String deleteMusic(@PathVariable Long postId, @Valid PostDto postDto) {
+        if(postDto.getId().equals(postId)) {
+            musicService.delete(postId);
+        }
+        return "music-category";
+    }
+
     private void getAllMusics(Model model) {
         model.addAttribute("musics",musicService.list());
     }
 
-    //  wyświetlanie wszystkich elementów kategorii
 }

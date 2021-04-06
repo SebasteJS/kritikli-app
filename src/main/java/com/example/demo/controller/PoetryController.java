@@ -6,9 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -34,9 +32,24 @@ public class PoetryController {
         return "poetry-category";
     }
 
+    @PutMapping("main/poetry/{postId}")
+    public String editPoetry(@PathVariable Long postId, @Valid PostDto postDto) {
+        if(postDto.getId().equals(postId)) {
+            poetryService.update(postDto);
+        }
+        return "poetry-category";
+    }
+
+    @DeleteMapping("main/poetry/{postId}")
+    public String deletePoetry(@PathVariable Long postId, @Valid PostDto postDto) {
+        if(postDto.getId().equals(postId)) {
+            poetryService.delete(postId);
+        }
+        return "poetry-category";
+    }
+
     private void getAllPotries(Model model) {
         model.addAttribute("poetries",poetryService.list());
     }
 
-    //  wyświetlanie wszystkich elementów kategorii
 }

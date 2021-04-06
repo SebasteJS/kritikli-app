@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -20,15 +21,19 @@ public class FashionCommentController {
 
     private final FashionCommentService fashionCommentService;
 
-    @GetMapping("/main/book/{id}")
-    public String fashionCommentsPage(Model model, @PathVariable String id) {
-        getAllFashionComments(model);
-        model.addAttribute("fashionComment", CommentDto.builder().build());
-        return "book";
+    @GetMapping("/main/fashion/{postId}")
+    public String fashionCommentsPage(Model model, @PathVariable Long postId) {
+        List<CommentDto> commentDtoList = fashionCommentService.list();
+        for (CommentDto commentDto : commentDtoList) {
+            if(commentDto.getId().equals(postId)) {
+                model.addAttribute("fashionComment", CommentDto.builder().build());
+            }
+        }
+        return "fashion";
     }
 
-    @PostMapping("/main/book/{id}")
-    public String addBookCommentToPage(Model model, @ModelAttribute("fashionComment") @Valid CommentDto fashionComment, BindingResult bindingResult) {
+    @PostMapping("/main/fashion/{id}")
+    public String addFashionCommentToPage(Model model, @ModelAttribute("fashionComment") @Valid CommentDto fashionComment, BindingResult bindingResult) {
         if(!bindingResult.hasErrors()) {
             fashionCommentService.add(fashionComment);
         }
@@ -37,6 +42,6 @@ public class FashionCommentController {
     }
 
     private void getAllFashionComments(Model model) {
-        model.addAttribute("bookComments", fashionCommentService.list());
+        model.addAttribute("fashionComments", fashionCommentService.list());
     }
 }

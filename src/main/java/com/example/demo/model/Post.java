@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -14,7 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "Post")
+@Table(name = "post")
 public class Post {
 
     @Id
@@ -33,8 +34,4 @@ public class Post {
 
     @Column
     private String criticalDescription;
-
-    @OneToMany(mappedBy = "Post")
-    private Set<Comment> comments;
-
 }

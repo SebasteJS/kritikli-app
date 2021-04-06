@@ -6,9 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -34,9 +32,24 @@ public class OtherController {
         return "other-category";
     }
 
+    @PutMapping("main/other/{postId}")
+    public String editOther(@PathVariable Long postId, @Valid PostDto postDto) {
+        if(postDto.getId().equals(postId)) {
+            otherService.update(postDto);
+        }
+        return "other-category";
+    }
+
+    @DeleteMapping("main/other/{postId}")
+    public String deleteOther(@PathVariable Long postId, @Valid PostDto postDto) {
+        if(postDto.getId().equals(postId)) {
+            otherService.delete(postId);
+        }
+        return "other-category";
+    }
+
     private void getAllOthers(Model model) {
         model.addAttribute("others",otherService.list());
     }
 
-    //  wyświetlanie wszystkich elementów kategorii
 }

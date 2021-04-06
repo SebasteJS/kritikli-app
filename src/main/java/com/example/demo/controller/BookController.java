@@ -6,9 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -32,6 +30,22 @@ public class BookController {
             bookService.add(book);
         }
         getAllBooks(model);
+        return "book-category";
+    }
+
+    @PutMapping("main/book/{postId}")
+    public String editBook(@PathVariable Long postId, @Valid PostDto postDto) {
+        if(postDto.getId().equals(postId)) {
+            bookService.update(postDto);
+        }
+        return "book-category";
+    }
+
+    @DeleteMapping("main/book/{postId}")
+    public String deleteBook(@PathVariable Long postId, @Valid PostDto postDto) {
+        if(postDto.getId().equals(postId)) {
+            bookService.delete(postId);
+        }
         return "book-category";
     }
 
