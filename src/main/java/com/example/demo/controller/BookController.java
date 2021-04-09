@@ -34,18 +34,20 @@ public class BookController {
     }
 
     @PutMapping("main/book/{postId}")
-    public String editBook(@PathVariable Long postId, @Valid PostDto postDto) {
+    public String editBook(Model model, @PathVariable Long postId, @Valid PostDto postDto) {
         if(postDto.getId().equals(postId)) {
             bookService.update(postDto);
         }
+        getAllBooks(model);
         return "book-category";
     }
 
     @DeleteMapping("main/book/{postId}")
-    public String deleteBook(@PathVariable Long postId, @Valid PostDto postDto) {
+    public String deleteBook(Model model, @PathVariable Long postId, @Valid PostDto postDto) {
         if(postDto.getId().equals(postId)) {
             bookService.delete(postId);
         }
+        getAllBooks(model);
         return "book-category";
     }
 

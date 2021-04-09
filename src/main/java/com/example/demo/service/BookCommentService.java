@@ -48,6 +48,20 @@ public class BookCommentService {
         }
     }
 
+    public List<CommentDto> listWithSpecifiedId(Long bookId) {
+        List<CommentDto> commentsWithSpecifiedId = new ArrayList<>();
+        List<CommentDto> commentDtoList = list();
+        for(CommentDto commentDto : commentDtoList) {
+            if(commentDto.getPostId().equals(bookId)){
+                commentsWithSpecifiedId.add(
+                        CommentDto.builder()
+                                .commentText(commentDto.getCommentText())
+                                .build());
+            }
+        }
+        return commentsWithSpecifiedId;
+    }
+
     public void delete(Long userId) {
         bookCommentRepository.deleteById(userId);
     }
