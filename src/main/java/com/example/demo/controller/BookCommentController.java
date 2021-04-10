@@ -11,7 +11,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -34,32 +33,35 @@ public class BookCommentController {
     }
 
     @PostMapping("/main/book/{postId}/comments")
-    public String addBookCommentToPage(Model model, @ModelAttribute("bookComment") @Valid CommentDto bookComment, @PathVariable Long postId) {
-        List<CommentDto> commentDtoList = bookCommentService.list();
-        for (CommentDto commentDto : commentDtoList) {
-            if(commentDto.getPostId().equals(postId)) {
+    public String addBookCommentToPage(Model model, @ModelAttribute("bookComment") @Valid CommentDto bookComment, @PathVariable Long postId, BindingResult bindingResult) {
+            if(!bindingResult.hasErrors()) {
                 bookCommentService.add(bookComment);
-            } else {
-                throw new ResourceNotFoundException("PostId " + postId + " not found");
             }
-        }
         getAllBookComments(model, postId);
         return "book";
     }
 
     @PutMapping("/main/book/{postId}/comments/{commentId}")
-    public String editBookComment(Model model, @PathVariable Long postId, @PathVariable Long commentId, @Valid CommentDto bookComment, BindingResult bindingResult) {
+    public String editBookComment(Model model, @PathVariable Long postId, @PathVariable Long commentId, @Valid CommentDto bookComment) {
         if(!bookCommentRepository.existsById(postId)) {
             throw new ResourceNotFoundException("PostId " + postId + " not found");
         }
-
+        if(bookCommentService.getCommentById(commentId).getId().equals(commentId)) {
+            bookCommentService.update(bookComment);
+        }
         getAllBookComments(model, postId);
         return "book";
     }
 
     @DeleteMapping("/main/book/{postId}/comments/{commentId}")
-    public String deleteBookComment(){
-
+    public String deleteBookComment(Model model, @PathVariable Long postId, @PathVariable Long commentId, @Valid CommentDto bookComment){
+        if(!bookCommentRepository.existsById(postId)) {
+            throw new ResourceNotFoundException("PostId " + postId + " not found");
+        }
+        if(bookCommentService.getCommentById(commentId).getId().equals(commentId)) {
+            bookCommentService.update(bookComment);
+        }
+        getAllBookComments(model, postId);
         return "book";
     }
 
