@@ -43,7 +43,7 @@ public class BookController {
     }
 
     @DeleteMapping("main/book/{postId}")
-    public String deleteBook(Model model, @PathVariable Long postId, @Valid PostDto postDto) {
+    public String deleteBook(Model model, @PathVariable Long postId) {
         if(bookService.getPostById(postId).getId().equals(postId)) {
             bookService.delete(postId);
         }

@@ -54,12 +54,12 @@ public class BookCommentController {
     }
 
     @DeleteMapping("/main/book/{postId}/comments/{commentId}")
-    public String deleteBookComment(Model model, @PathVariable Long postId, @PathVariable Long commentId, @Valid CommentDto bookComment){
+    public String deleteBookComment(Model model, @PathVariable Long postId, @PathVariable Long commentId){
         if(!bookCommentRepository.existsById(postId)) {
             throw new ResourceNotFoundException("PostId " + postId + " not found");
         }
         if(bookCommentService.getCommentById(commentId).getId().equals(commentId)) {
-            bookCommentService.update(bookComment);
+            bookCommentService.delete(commentId);
         }
         getAllBookComments(model, postId);
         return "book";
