@@ -54,6 +54,22 @@ public class FashionService {
         }
     }
 
+    public PostDto getPostById(Long id) {
+        PostDto post = new PostDto();
+        List<PostDto> postDtoList = list();
+        for(PostDto postDto : postDtoList){
+            if(postDto.getId().equals(id)){
+                post = PostDto.builder()
+                        .author(postDto.getAuthor())
+                        .title(postDto.getTitle())
+                        .description(postDto.getDescription())
+                        .criticalDescription(postDto.getCriticalDescription())
+                        .build();
+            }
+        }
+        return post;
+    }
+
     public void delete(Long userId) {
         fashionRepository.deleteById(userId);
     }

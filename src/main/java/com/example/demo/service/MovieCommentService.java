@@ -49,6 +49,34 @@ public class MovieCommentService {
         }
     }
 
+    public List<CommentDto> listWithSpecifiedId(Long postId) {
+        List<CommentDto> commentsWithSpecifiedId = new ArrayList<>();
+        List<CommentDto> commentDtoList = list();
+        for(CommentDto commentDto : commentDtoList) {
+            if(commentDto.getPostId().equals(postId)){
+                commentsWithSpecifiedId.add(
+                        CommentDto.builder()
+                                .commentText(commentDto.getCommentText())
+                                .build());
+            }
+        }
+        return commentsWithSpecifiedId;
+    }
+
+    public CommentDto getCommentById(Long commentId) {
+        CommentDto comment = new CommentDto();
+        List<CommentDto> commentDtoList = list();
+        for(CommentDto commentDto : commentDtoList) {
+            if(commentDto.getId().equals(commentId)) {
+                comment = CommentDto.builder()
+                        .commentText(commentDto.getCommentText())
+                        .build();
+
+            }
+        }
+        return comment;
+    }
+
     public void delete(Long userId) {
         movieCommentRepository.deleteById(userId);
     }

@@ -48,11 +48,11 @@ public class BookCommentService {
         }
     }
 
-    public List<CommentDto> listWithSpecifiedId(Long bookId) {
+    public List<CommentDto> listWithSpecifiedId(Long postId) {
         List<CommentDto> commentsWithSpecifiedId = new ArrayList<>();
         List<CommentDto> commentDtoList = list();
         for(CommentDto commentDto : commentDtoList) {
-            if(commentDto.getPostId().equals(bookId)){
+            if(commentDto.getPostId().equals(postId)){
                 commentsWithSpecifiedId.add(
                         CommentDto.builder()
                                 .commentText(commentDto.getCommentText())
