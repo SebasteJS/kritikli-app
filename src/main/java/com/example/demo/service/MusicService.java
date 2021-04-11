@@ -70,7 +70,7 @@ public class MusicService {
         return post;
     }
 
-    public void delete(Long userId) {
-        musicRepository.deleteById(userId);
+    public void delete(Long postId) {
+        musicRepository.deleteById(postId);
     }
 }

@@ -70,7 +70,7 @@ public class OtherService {
         return post;
     }
 
-    public void delete(Long userId) {
-        otherRepository.deleteById(userId);
+    public void delete(Long postId) {
+        otherRepository.deleteById(postId);
     }
 }

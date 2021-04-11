@@ -70,7 +70,7 @@ public class FashionService {
         return post;
     }
 
-    public void delete(Long userId) {
-        fashionRepository.deleteById(userId);
+    public void delete(Long postId) {
+        fashionRepository.deleteById(postId);
     }
 }

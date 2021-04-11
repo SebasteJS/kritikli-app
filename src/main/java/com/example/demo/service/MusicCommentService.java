@@ -73,7 +73,7 @@ public class MusicCommentService {
         return comment;
     }
 
-    public void delete(Long userId) {
-        musicCommentRepository.deleteById(userId);
+    public void delete(Long commentId) {
+        musicCommentRepository.deleteById(commentId);
     }
 }

@@ -70,7 +70,7 @@ public class BookService {
         return post;
     }
 
-    public void delete(Long userId) {
-        bookRepository.deleteById(userId);
+    public void delete(Long postId) {
+        bookRepository.deleteById(postId);
     }
 }

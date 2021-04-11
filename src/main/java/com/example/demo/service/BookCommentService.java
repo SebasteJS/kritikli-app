@@ -73,7 +73,7 @@ public class BookCommentService {
         return comment;
     }
 
-    public void delete(Long userId) {
-        bookCommentRepository.deleteById(userId);
+    public void delete(Long commentId) {
+        bookCommentRepository.deleteById(commentId);
     }
 }

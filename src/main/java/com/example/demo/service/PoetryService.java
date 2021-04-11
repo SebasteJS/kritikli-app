@@ -70,7 +70,7 @@ public class PoetryService {
         return post;
     }
 
-    public void delete(Long userId) {
-        poetryRepository.deleteById(userId);
+    public void delete(Long postId) {
+        poetryRepository.deleteById(postId);
     }
 }

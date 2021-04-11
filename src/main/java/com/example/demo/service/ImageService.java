@@ -70,7 +70,7 @@ public class ImageService {
         return post;
     }
 
-    public void delete(Long userId) {
-        imageRepository.deleteById(userId);
+    public void delete(Long postId) {
+        imageRepository.deleteById(postId);
     }
 }

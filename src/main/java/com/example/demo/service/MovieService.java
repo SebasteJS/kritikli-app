@@ -70,7 +70,7 @@ public class MovieService {
         return post;
     }
 
-    public void delete(Long userId) {
-        movieRepository.deleteById(userId);
+    public void delete(Long postId) {
+        movieRepository.deleteById(postId);
     }
 }

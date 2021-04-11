@@ -73,7 +73,7 @@ public class MovieCommentService {
         return comment;
     }
 
-    public void delete(Long userId) {
-        movieCommentRepository.deleteById(userId);
+    public void delete(Long commentId) {
+        movieCommentRepository.deleteById(commentId);
     }
 }

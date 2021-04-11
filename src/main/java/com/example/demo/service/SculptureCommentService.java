@@ -73,7 +73,7 @@ public class SculptureCommentService {
         return comment;
     }
 
-    public void delete(Long userId) {
-        sculptureCommentRepository.deleteById(userId);
+    public void delete(Long commentId) {
+        sculptureCommentRepository.deleteById(commentId);
     }
 }

@@ -70,7 +70,7 @@ public class SculptureService {
         return post;
     }
 
-    public void delete(Long userId) {
-        sculptureRepository.deleteById(userId);
+    public void delete(Long postId) {
+        sculptureRepository.deleteById(postId);
     }
 }

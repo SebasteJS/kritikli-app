@@ -73,7 +73,7 @@ public class FashionCommentService {
         return comment;
     }
 
-    public void delete(Long userId) {
-        fashionCommentRepository.deleteById(userId);
+    public void delete(Long commentId) {
+        fashionCommentRepository.deleteById(commentId);
     }
 }
