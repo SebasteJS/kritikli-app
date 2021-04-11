@@ -1,11 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.CommentDto;
-import com.example.demo.dto.PostDto;
 import com.example.demo.model.Comment;
-import com.example.demo.model.Post;
-import com.example.demo.repository.BookCommentRepository;
-import com.example.demo.repository.BookRepository;
 import com.example.demo.repository.SculptureCommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -21,52 +21,52 @@ public class BookCommentController {
     private final BookCommentRepository bookCommentRepository;
 
     @GetMapping("/main/book/{postId}/comments")
-    public String bookCommentsPage(Model model, @PathVariable Long postId) {
+    public String commentsPage(Model model, @PathVariable Long postId) {
         List<CommentDto> commentDtoList = bookCommentService.list();
         for (CommentDto commentDto : commentDtoList) {
             if(commentDto.getPostId().equals(postId)) {
-                model.addAttribute("bookComment", CommentDto.builder().build());
+                model.addAttribute("comment", CommentDto.builder().build());
             }
         }
-        getAllBookComments(model, postId);
+        getAllComments(model, postId);
         return "book";
     }
 
     @PostMapping("/main/book/{postId}/comments")
-    public String addBookCommentToPage(Model model, @ModelAttribute("bookComment") @Valid CommentDto bookComment, @PathVariable Long postId, BindingResult bindingResult) {
+    public String addCommentToPage(Model model, @ModelAttribute("comment") @Valid CommentDto commentDto, @PathVariable Long postId, BindingResult bindingResult) {
             if(!bindingResult.hasErrors()) {
-                bookCommentService.add(bookComment);
+                bookCommentService.add(commentDto);
             }
-        getAllBookComments(model, postId);
+        getAllComments(model, postId);
         return "book";
     }
 
     @PutMapping("/main/book/{postId}/comments/{commentId}")
-    public String editBookComment(Model model, @PathVariable Long postId, @PathVariable Long commentId, @Valid CommentDto bookComment) {
+    public String editComment(Model model, @PathVariable Long postId, @PathVariable Long commentId, @Valid CommentDto commentDto) {
         if(!bookCommentRepository.existsById(postId)) {
             throw new ResourceNotFoundException("PostId " + postId + " not found");
         }
         if(bookCommentService.getCommentById(commentId).getId().equals(commentId)) {
-            bookCommentService.update(bookComment);
+            bookCommentService.update(commentDto);
         }
-        getAllBookComments(model, postId);
+        getAllComments(model, postId);
         return "book";
     }
 
     @DeleteMapping("/main/book/{postId}/comments/{commentId}")
-    public String deleteBookComment(Model model, @PathVariable Long postId, @PathVariable Long commentId){
+    public String deleteComment(Model model, @PathVariable Long postId, @PathVariable Long commentId){
         if(!bookCommentRepository.existsById(postId)) {
             throw new ResourceNotFoundException("PostId " + postId + " not found");
         }
         if(bookCommentService.getCommentById(commentId).getId().equals(commentId)) {
             bookCommentService.delete(commentId);
         }
-        getAllBookComments(model, postId);
+        getAllComments(model, postId);
         return "book";
     }
 
-    private void getAllBookComments(Model model, Long bookId) {
-        model.addAttribute("bookComments", bookCommentService.listWithSpecifiedId(bookId));
+    private void getAllComments(Model model, Long postId) {
+        model.addAttribute("comments", bookCommentService.listWithSpecifiedId(postId));
     }
 
 }
