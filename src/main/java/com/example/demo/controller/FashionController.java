@@ -33,18 +33,20 @@ public class FashionController {
     }
 
     @PutMapping("main/fashion/{postId}")
-    public String editFashion(@PathVariable Long postId, @Valid PostDto postDto) {
-        if(postDto.getId().equals(postId)) {
+    public String editFashion(Model model, @PathVariable Long postId, @Valid PostDto postDto) {
+        if(fashionService.getPostById(postId).getId().equals(postId)) {
             fashionService.update(postDto);
         }
+        getAllFashions(model);
         return "fashion-category";
     }
 
     @DeleteMapping("main/fashion/{postId}")
-    public String deleteFashion(@PathVariable Long postId, @Valid PostDto postDto) {
-        if(postDto.getId().equals(postId)) {
+    public String deleteFashion(Model model,@PathVariable Long postId, @Valid PostDto postDto) {
+        if(fashionService.getPostById(postId).getId().equals(postId)) {
             fashionService.delete(postId);
         }
+        getAllFashions(model);
         return "fashion-category";
     }
 

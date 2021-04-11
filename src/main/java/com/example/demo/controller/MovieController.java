@@ -33,18 +33,20 @@ public class MovieController {
     }
 
     @PutMapping("main/movie/{postId}")
-    public String editMovie(@PathVariable Long postId, @Valid PostDto postDto) {
-        if (postDto.getId().equals(postId)) {
+    public String editMovie(Model model, @PathVariable Long postId, @Valid PostDto postDto) {
+        if (movieService.getPostById(postId).getId().equals(postId)) {
             movieService.update(postDto);
         }
+        getAllMovies(model);
         return "movie-category";
     }
 
     @DeleteMapping("main/movie/{postId}")
-    public String deleteMovie(@PathVariable Long postId, @Valid PostDto postDto) {
-        if (postDto.getId().equals(postId)) {
+    public String deleteMovie(Model model, @PathVariable Long postId, @Valid PostDto postDto) {
+        if (movieService.getPostById(postId).getId().equals(postId)) {
             movieService.delete(postId);
         }
+        getAllMovies(model);
         return "movie-category";
     }
 

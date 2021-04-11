@@ -33,18 +33,20 @@ public class PoetryController {
     }
 
     @PutMapping("main/poetry/{postId}")
-    public String editPoetry(@PathVariable Long postId, @Valid PostDto postDto) {
-        if(postDto.getId().equals(postId)) {
+    public String editPoetry(Model model, @PathVariable Long postId, @Valid PostDto postDto) {
+        if(poetryService.getPostById(postId).getId().equals(postId)) {
             poetryService.update(postDto);
         }
+        getAllPotries(model);
         return "poetry-category";
     }
 
     @DeleteMapping("main/poetry/{postId}")
-    public String deletePoetry(@PathVariable Long postId, @Valid PostDto postDto) {
-        if(postDto.getId().equals(postId)) {
+    public String deletePoetry(Model model, @PathVariable Long postId, @Valid PostDto postDto) {
+        if(poetryService.getPostById(postId).getId().equals(postId)) {
             poetryService.delete(postId);
         }
+        getAllPotries(model);
         return "poetry-category";
     }
 

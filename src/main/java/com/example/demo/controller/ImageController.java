@@ -33,18 +33,20 @@ public class ImageController {
     }
 
     @PutMapping("main/image/{postId}")
-    public String editImage(@PathVariable Long postId, @Valid PostDto postDto) {
-        if(postDto.getId().equals(postId)) {
+    public String editImage(Model model, @PathVariable Long postId, @Valid PostDto postDto) {
+        if(imageService.getPostById(postId).getId().equals(postId)) {
             imageService.update(postDto);
         }
+        getAllImages(model);
         return "image-category";
     }
 
     @DeleteMapping("main/image/{postId}")
-    public String deleteImage(@PathVariable Long postId, @Valid PostDto postDto) {
-        if(postDto.getId().equals(postId)) {
+    public String deleteImage(Model model, @PathVariable Long postId, @Valid PostDto postDto) {
+        if(imageService.getPostById(postId).getId().equals(postId)) {
             imageService.delete(postId);
         }
+        getAllImages(model);
         return "image-category";
     }
 

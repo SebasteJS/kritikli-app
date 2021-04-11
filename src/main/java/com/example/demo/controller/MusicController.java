@@ -33,18 +33,20 @@ public class MusicController {
     }
 
     @PutMapping("main/music/{postId}")
-    public String editMusic(@PathVariable Long postId, @Valid PostDto postDto) {
-        if(postDto.getId().equals(postId)) {
+    public String editMusic(Model model, @PathVariable Long postId, @Valid PostDto postDto) {
+        if(musicService.getPostById(postId).getId().equals(postId)) {
             musicService.update(postDto);
         }
+        getAllMusics(model);
         return "music-category";
     }
 
     @DeleteMapping("main/music/{postId}")
-    public String deleteMusic(@PathVariable Long postId, @Valid PostDto postDto) {
-        if(postDto.getId().equals(postId)) {
+    public String deleteMusic(Model model, @PathVariable Long postId, @Valid PostDto postDto) {
+        if(musicService.getPostById(postId).getId().equals(postId)) {
             musicService.delete(postId);
         }
+        getAllMusics(model);
         return "music-category";
     }
 

@@ -33,18 +33,20 @@ public class OtherController {
     }
 
     @PutMapping("main/other/{postId}")
-    public String editOther(@PathVariable Long postId, @Valid PostDto postDto) {
-        if(postDto.getId().equals(postId)) {
+    public String editOther(Model model, @PathVariable Long postId, @Valid PostDto postDto) {
+        if(otherService.getPostById(postId).getId().equals(postId)) {
             otherService.update(postDto);
         }
+        getAllOthers(model);
         return "other-category";
     }
 
     @DeleteMapping("main/other/{postId}")
-    public String deleteOther(@PathVariable Long postId, @Valid PostDto postDto) {
-        if(postDto.getId().equals(postId)) {
+    public String deleteOther(Model model, @PathVariable Long postId, @Valid PostDto postDto) {
+        if(otherService.getPostById(postId).getId().equals(postId)) {
             otherService.delete(postId);
         }
+        getAllOthers(model);
         return "other-category";
     }
 

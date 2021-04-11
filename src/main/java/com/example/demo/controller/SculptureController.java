@@ -33,18 +33,20 @@ public class SculptureController {
     }
 
     @PutMapping("main/sculpture/{postId}")
-    public String editSculpture(@PathVariable Long postId, @Valid PostDto postDto) {
-        if(postDto.getId().equals(postId)) {
+    public String editSculpture(Model model, @PathVariable Long postId, @Valid PostDto postDto) {
+        if(sculptureService.getPostById(postId).getId().equals(postId)) {
             sculptureService.update(postDto);
         }
+        getAllSculptures(model);
         return "sculpture-category";
     }
 
     @DeleteMapping("main/sculpture/{postId}")
-    public String deleteSculpture(@PathVariable Long postId, @Valid PostDto postDto) {
-        if(postDto.getId().equals(postId)) {
+    public String deleteSculpture(Model model, @PathVariable Long postId, @Valid PostDto postDto) {
+        if(sculptureService.getPostById(postId).getId().equals(postId)) {
             sculptureService.delete(postId);
         }
+        getAllSculptures(model);
         return "sculpture-category";
     }
 
